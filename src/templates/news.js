@@ -61,7 +61,7 @@ const News = ({ dispatch, pageContext, data, currLang }) => {
     }
   })
 
-  const text = data.text.childMarkdownRemark.frontmatter
+  const dictionary = data.dictionary.childMarkdownRemark.frontmatter
 
   const Article = ({ title, img, slug, date, excerpt }) => (
     <Card elevation={0} square variant="outlined">
@@ -81,7 +81,7 @@ const News = ({ dispatch, pageContext, data, currLang }) => {
         </CardContent>
         <CardActions>
           <Button fullWidth startIcon={<BookOpen />}>
-            {text.dict_read_more[`dict_read_more_${language}`]}
+            {dictionary.read_more[language]}
           </Button>
         </CardActions>
       </CardActionArea>
@@ -134,15 +134,15 @@ export default connect(mapStateToProps)(News)
 
 export const homeQuery = graphql`
   query homeQuery($skip: Int!, $limit: Int!, $sourceInstance: String!) {
-    text: file(
+    dictionary: file(
       sourceInstanceName: { eq: "language" }
       name: { eq: "dictionary" }
     ) {
       childMarkdownRemark {
         frontmatter {
-          dict_read_more {
-            dict_read_more_en
-            dict_read_more_es
+          read_more {
+            en
+            es
           }
         }
       }

@@ -66,6 +66,13 @@ module.exports = {
         path: `${__dirname}/content/articles/espanol`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `contact_details`,
+        path: `${__dirname}/content/contact`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -93,12 +100,18 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1024,
+              maxWidth: 500,
               linkImagesToOriginal: false,
               withWebp: true,
             },
           },
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-react-leaflet",
+      options: {
+        linkStyles: true, // (default: true) Enable/disable loading stylesheets via CDN
       },
     },
     {

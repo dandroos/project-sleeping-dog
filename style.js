@@ -1,8 +1,8 @@
 module.exports = {
   fonts: {
     heading: {
-      family: "Raleway",
-      weight: 900,
+      family: "Kumbh Sans",
+      weight: 800,
     },
     body: {
       family: "Montserrat",

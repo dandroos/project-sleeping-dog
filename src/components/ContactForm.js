@@ -13,25 +13,25 @@ const ContactForm = ({ language }) => {
       ) {
         childMarkdownRemark {
           frontmatter {
-            dict_email {
-              dict_email_en
-              dict_email_es
+            email {
+              en
+              es
             }
-            dict_name {
-              dict_name_en
-              dict_name_es
+            name {
+              en
+              es
             }
-            dict_message {
-              dict_message_en
-              dict_message_es
+            message {
+              en
+              es
             }
-            dict_send {
-              dict_send_en
-              dict_send_es
+            send {
+              en
+              es
             }
-            dict_phone {
-              dict_phone_en
-              dict_phone_es
+            phone {
+              en
+              es
             }
           }
         }
@@ -139,7 +139,7 @@ const ContactForm = ({ language }) => {
             <TextField
               fullWidth
               variant="outlined"
-              label={data.dict_name[`dict_name_${language}`]}
+              label={data.name[`name_${language}`]}
               name="name"
               required
               id="name"
@@ -151,7 +151,7 @@ const ContactForm = ({ language }) => {
             <TextField
               fullWidth
               variant="outlined"
-              label={data.dict_email[`dict_email_${language}`]}
+              label={data.email[`email_${language}`]}
               name="email"
               required
               id="email"
@@ -164,7 +164,7 @@ const ContactForm = ({ language }) => {
             <TextField
               fullWidth
               variant="outlined"
-              label={data.dict_phone[`dict_phone_${language}`]}
+              label={data.phone[`phone_${language}`]}
               name="phone"
               id="phone"
               onChange={handleChange}
@@ -177,7 +177,7 @@ const ContactForm = ({ language }) => {
               variant="outlined"
               multiline
               required
-              label={data.dict_message[`dict_message_${language}`]}
+              label={data.message[`message_${language}`]}
               name="message"
               id="message"
               onChange={handleChange}
@@ -193,7 +193,7 @@ const ContactForm = ({ language }) => {
             type="submit"
             size="large"
           >
-            {data.dict_send[`dict_send_${language}`]}
+            {data.send[`send_${language}`]}
           </Button>
         </Box>
       </form>

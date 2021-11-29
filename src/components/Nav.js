@@ -12,6 +12,7 @@ import Dropdown from "./Dropdown"
 import { Link } from "./Link"
 import MobileNav from "./MobileNav"
 import LanguageSelector from "./LanguageSelector"
+import SocialLinks from "./SocialLinks"
 
 const Nav = ({ dispatch, atTop, isMobile, language }) => {
   const { siteLogo, siteLogoSmall, siteTitle } = useStaticQuery(graphql`
@@ -35,6 +36,17 @@ const Nav = ({ dispatch, atTop, isMobile, language }) => {
       siteTitle: site {
         siteMetadata {
           title
+        }
+      }
+      social: file(
+        sourceInstanceName: { eq: "contact_details" }
+        name: { eq: "email_and_social" }
+      ) {
+        childMarkdownRemark {
+          frontmatter {
+            facebook_id
+            instagram_id
+          }
         }
       }
     }
@@ -119,12 +131,8 @@ const Nav = ({ dispatch, atTop, isMobile, language }) => {
                     return null
                   }
                 )}
-                {navigation.external.map(({ Icon, url }, ind) => (
-                  <IconButton key={ind} color="inherit">
-                    <Icon />
-                  </IconButton>
-                ))}
-                {!isMobile && <LanguageSelector />}
+                <SocialLinks />
+                <LanguageSelector />
               </>
             )}
           </Toolbar>

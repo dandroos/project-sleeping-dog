@@ -85,7 +85,7 @@ export const pageQuery = graphql`
         featured_image {
           childImageSharp {
             gatsbyImageData(
-              aspectRatio: 2.75
+              aspectRatio: 1.7
               transformOptions: { cropFocus: CENTER }
             )
           }

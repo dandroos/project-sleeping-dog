@@ -30,56 +30,50 @@ const Summary = ({
   sociability,
   language,
 }) => {
-  // const data = useStaticQuery(graphql`
-  // {
-
-  // }
-  // `)
-
-  const text = useStaticQuery(graphql`
+  const dictionary = useStaticQuery(graphql`
     {
       file(sourceInstanceName: { eq: "language" }, name: { eq: "dictionary" }) {
         childMarkdownRemark {
           frontmatter {
-            dict_age {
-              dict_age_en
-              dict_age_es
+            age {
+              en
+              es
             }
-            dict_breed {
-              dict_breed_en
-              dict_breed_es
+            breed {
+              en
+              es
             }
-            dict_came_in {
-              dict_came_in_en
-              dict_came_in_es
+            came_in {
+              en
+              es
             }
-            dict_cats {
-              dict_cats_en
-              dict_cats_es
+            cats {
+              en
+              es
             }
-            dict_sex {
-              dict_sex_en
-              dict_sex_es
+            sex {
+              en
+              es
             }
-            dict_ppp {
-              dict_ppp_en
-              dict_ppp_es
+            ppp {
+              en
+              es
             }
-            dict_children {
-              dict_children_en
-              dict_children_es
+            children {
+              en
+              es
             }
-            dict_dogs {
-              dict_dogs_en
-              dict_dogs_es
+            dogs {
+              en
+              es
             }
-            dict_profile {
-              dict_profile_en
-              dict_profile_es
+            profile {
+              en
+              es
             }
-            dict_sociability {
-              dict_sociability_en
-              dict_sociability_es
+            sociability {
+              en
+              es
             }
           }
         }
@@ -106,36 +100,21 @@ const Summary = ({
   )
   return (
     <>
-      <Typography variant="h5">
-        {text.dict_profile[`dict_profile_${language}`]}
-      </Typography>
+      <Typography variant="h5">{dictionary.profile[language]}</Typography>
       <List>
-        <Detail label={text.dict_age[`dict_age_${language}`]} Icon={Cake}>
+        <Detail label={dictionary.age[language]} Icon={Cake}>
           {dob}
         </Detail>
-        <Detail
-          label={text.dict_sex[`dict_sex_${language}`]}
-          Icon={GenderMaleFemale}
-        >
+        <Detail label={dictionary.sex[language]} Icon={GenderMaleFemale}>
           {sex}
         </Detail>
-        <Detail
-          label={text.dict_breed[`dict_breed_${language}`]}
-          Icon={DogSide}
-        >
+        <Detail label={dictionary.breed[language]} Icon={DogSide}>
           {breed}
         </Detail>
-        <Detail
-          label={text.dict_ppp[`dict_ppp_${language}`]}
-          Icon={AlertCircleOutline}
-        >
+        <Detail label={dictionary.ppp[language]} Icon={AlertCircleOutline}>
           {ppp}
         </Detail>
-        <Detail
-          label={text.dict_came_in[`dict_came_in_${language}`]}
-          Icon={Calendar}
-          noDivider
-        >
+        <Detail label={dictionary.came_in[language]} Icon={Calendar} noDivider>
           {date_entered}
         </Detail>
         <ListSubheader
@@ -148,22 +127,15 @@ const Summary = ({
             background: "transparent",
           }}
         >
-          {text.dict_sociability[`dict_sociability_${language}`]}
+          {dictionary.sociability[language]}
         </ListSubheader>
-        <Detail
-          label={text.dict_children[`dict_children_${language}`]}
-          Icon={HumanChild}
-        >
+        <Detail label={dictionary.children[language]} Icon={HumanChild}>
           {sociability.children}
         </Detail>
-        <Detail label={text.dict_dogs[`dict_dogs_${language}`]} Icon={DogIcon}>
+        <Detail label={dictionary.dogs[language]} Icon={DogIcon}>
           {sociability.dogs}
         </Detail>
-        <Detail
-          label={text.dict_cats[`dict_cats_${language}`]}
-          Icon={Cat}
-          noDivider
-        >
+        <Detail label={dictionary.cats[language]} Icon={Cat} noDivider>
           {sociability.cats}
         </Detail>
       </List>

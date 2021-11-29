@@ -52,14 +52,19 @@ const LanguageSelector = ({ dispatch, isMobile, language, locationId }) => {
   const { internal } = useNav()
 
   const redirect = (lang) => {
-    const redirectUrl = `${
-      internal.filter((i) => {
-        return i.id === locationId.id
-      })[0].url[lang]
-    }${locationId !== `home` ? "/" : ""}`
-    navigate(
-      `/${lang}${redirectUrl}${locationId.dog ? locationId.dog.substr(1) : ""}`
-    )
+    let redirectUrl
+    if (locationId.staticPage) {
+      redirectUrl = internal
+        .filter((i) => i.id === "how-to")[0]
+        .options.filter((j) => j.id === locationId.id)[0].url[lang]
+    } else {
+      redirectUrl = `${
+        internal.filter((i) => {
+          return i.id === locationId.id
+        })[0].url[lang]
+      }${locationId.id !== `home` ? "/" : ""}`
+    }
+    navigate(`/${lang}${redirectUrl}${locationId.dog ? locationId.dog : ""}`)
   }
   return (
     <>
@@ -70,10 +75,6 @@ const LanguageSelector = ({ dispatch, isMobile, language, locationId }) => {
         <MenuItem
           onClick={() => {
             changeLanguage("en")
-            // dispatch(setDisablePrompt(true))
-            // dispatch(setLanguage("en"))
-            // handleClose()
-            // redirect("en")
           }}
         >
           <ListItemIcon>
@@ -84,10 +85,6 @@ const LanguageSelector = ({ dispatch, isMobile, language, locationId }) => {
         <MenuItem
           onClick={() => {
             changeLanguage("es")
-            // dispatch(setDisablePrompt(true))
-            // dispatch(setLanguage("es"))
-            // handleClose()
-            // redirect("es")
           }}
         >
           <ListItemIcon>

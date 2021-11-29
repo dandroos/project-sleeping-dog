@@ -7,10 +7,6 @@ import { setSelectedImage } from "../../redux/actions"
 const Thumbnails = ({ dispatch, selectedImage, images }) => {
   const theme = useTheme()
 
-  React.useEffect(() => {
-    console.log(selectedImage)
-  }, [selectedImage])
-
   const Thumbnail = ({ image, ind }) => (
     <Grid item key={ind}>
       <GatsbyImage

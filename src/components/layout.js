@@ -3,6 +3,7 @@ import React, { useEffect } from "react"
 import { connect } from "react-redux"
 
 import { setIsMobile } from "../redux/actions"
+import Footer from "./Footer"
 import LanguageRedirect from "./LanguageRedirect"
 import Nav from "./Nav"
 

@@ -3,10 +3,10 @@ import { connect } from "react-redux"
 import { Box } from "@mui/system"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
-import Footer from "./Footer"
 import Seo from "./seo"
+import Footer from "./Footer"
 
-const PageWrapper = ({ isMobile, title, children, img }) => {
+const PageWrapper = ({ isMobile, title = "", children, img }) => {
   if (img) {
     img = getImage(img)
   }
@@ -14,7 +14,15 @@ const PageWrapper = ({ isMobile, title, children, img }) => {
     <>
       <Seo title={title} />
       <Toolbar />
-      {img && <GatsbyImage image={img} />}
+      {img && (
+        <Container
+          maxWidth={isMobile ? false : "md"}
+          sx={{ mt: isMobile ? 0 : 3 }}
+          disableGutters={isMobile}
+        >
+          <GatsbyImage image={img} />
+        </Container>
+      )}
       <Box py={2}>
         <Container>
           <Typography
@@ -26,9 +34,7 @@ const PageWrapper = ({ isMobile, title, children, img }) => {
           {children}
         </Container>
       </Box>
-      <Box py={2}>
-        <Footer />
-      </Box>
+      <Footer />
     </>
   )
 }

@@ -7,6 +7,7 @@ import { getImage } from "gatsby-plugin-image"
 import { convertToBgImage } from "gbimage-bridge"
 import * as React from "react"
 import { connect } from "react-redux"
+import Footer from "../components/Footer"
 
 import { Link } from "../components/Link"
 import Seo from "../components/seo"
@@ -22,58 +23,108 @@ const Index = ({ dispatch, pageContext, isMobile, currLang }) => {
     }
     //eslint-disable-next-line
   }, [])
-  const { text, heroImageQuery, heroImageMobileQuery } = useStaticQuery(graphql`
-    {
-      text: file(
-        sourceInstanceName: { eq: "language" }
-        name: { eq: "dictionary" }
-      ) {
-        childMarkdownRemark {
-          frontmatter {
-            dict_home {
-              dict_home_en
-              dict_home_es
+  const { content, dictionary, heroImageQuery, heroImageMobileQuery } =
+    useStaticQuery(graphql`
+      {
+        content: file(
+          sourceInstanceName: { eq: "static_pages" }
+          name: { eq: "homepage" }
+        ) {
+          childMarkdownRemark {
+            frontmatter {
+              homepage_main_image_landscape {
+                childImageSharp {
+                  gatsbyImageData(
+                    aspectRatio: 2.2
+                    quality: 100
+                    transformOptions: { cropFocus: CENTER }
+                  )
+                }
+              }
+              homepage_main_image_portrait {
+                childImageSharp {
+                  gatsbyImageData(aspectRatio: 0.75, quality: 100)
+                }
+              }
+              homepage_subheading {
+                en
+                es
+              }
+              homepage_cta_1 {
+                homepage_cta_1_button_text {
+                  en
+                  es
+                }
+                homepage_cta_1_page
+              }
+              homepage_cta_2 {
+                homepage_cta_2_button_text {
+                  en
+                  es
+                }
+                homepage_cta_2_page
+              }
+              homepage_heading {
+                es
+                en
+              }
+            }
+          }
+        }
+        dictionary: file(
+          sourceInstanceName: { eq: "language" }
+          name: { eq: "dictionary" }
+        ) {
+          childMarkdownRemark {
+            frontmatter {
+              home {
+                en
+                es
+              }
             }
           }
         }
       }
+    `)
 
-      heroImageQuery: file(
-        sourceInstanceName: { eq: "images" }
-        name: { eq: "hero-l" }
-      ) {
-        childImageSharp {
-          gatsbyImageData(aspectRatio: 2.2, quality: 100)
-        }
-      }
-      heroImageMobileQuery: file(
-        sourceInstanceName: { eq: "images" }
-        name: { eq: "hero" }
-      ) {
-        childImageSharp {
-          gatsbyImageData(aspectRatio: 0.75, quality: 100)
-        }
-      }
-    }
-  `)
-
-  const image = getImage(heroImageQuery)
-  const mobileImage = getImage(heroImageMobileQuery)
+  const image = getImage(
+    content.childMarkdownRemark.frontmatter.homepage_main_image_landscape
+  )
+  const mobileImage = getImage(
+    content.childMarkdownRemark.frontmatter.homepage_main_image_portrait
+  )
   const bgImage = isMobile
     ? convertToBgImage(mobileImage)
     : convertToBgImage(image)
 
   const { internal } = useNav()
 
+  const CTA = ({ page, text, secondary }) => (
+    <Button
+      size="large"
+      component={Link}
+      color={secondary ? "secondary" : "primary"}
+      endIcon={(() => {
+        switch (page) {
+          case "news":
+            return <Newspaper />
+          case "the-dogs":
+            return <Dog />
+          case "about":
+            return
+        }
+      })()}
+      to={`/${currLang}${
+        internal.filter((i) => i.id === page)[0].url[currLang]
+      }`}
+    >
+      {text}
+    </Button>
+  )
+
   return (
     <>
-      <Seo
-        title={
-          text.childMarkdownRemark.frontmatter.dict_home[
-            `dict_home_${language}`
-          ]
-        }
-      />
+      <Seo title={dictionary.childMarkdownRemark.frontmatter.home[language]} />
       <BackgroundImage {...bgImage}>
         <Box
           minHeight="100vh"
@@ -94,45 +145,51 @@ const Index = ({ dispatch, pageContext, isMobile, currLang }) => {
           >
             <Container maxWidth="lg">
               <Typography variant="h2" variantMapping={{ h1: "h2" }}>
-                Lorem ipsum dolor sit amet
+                {
+                  content.childMarkdownRemark.frontmatter.homepage_heading[
+                    language
+                  ]
+                }
               </Typography>
               <Typography paragraph variant="lead">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-                quasi!
+                {
+                  content.childMarkdownRemark.frontmatter.homepage_subheading[
+                    language
+                  ]
+                }
               </Typography>
               <Grid container spacing={1}>
                 <Grid item>
-                  <Button
-                    size="large"
-                    endIcon={<Newspaper />}
-                    component={Link}
-                    to={`/${currLang}${
-                      internal.filter((i) => i.id === "news")[0].url[currLang]
-                    }`}
-                  >
-                    Latest news
-                  </Button>
+                  <CTA
+                    page={
+                      content.childMarkdownRemark.frontmatter.homepage_cta_1
+                        .homepage_cta_1_page
+                    }
+                    text={
+                      content.childMarkdownRemark.frontmatter.homepage_cta_1
+                        .homepage_cta_1_button_text[language]
+                    }
+                  />
                 </Grid>
                 <Grid item>
-                  <Button
-                    size="large"
-                    color="secondary"
-                    component={Link}
-                    to={`/${currLang}${
-                      internal.filter((i) => i.id === "the-dogs")[0].url[
-                        currLang
-                      ]
-                    }`}
-                    endIcon={<Dog />}
-                  >
-                    View dogs
-                  </Button>
+                  <CTA
+                    page={
+                      content.childMarkdownRemark.frontmatter.homepage_cta_2
+                        .homepage_cta_2_page
+                    }
+                    text={
+                      content.childMarkdownRemark.frontmatter.homepage_cta_2
+                        .homepage_cta_2_button_text[language]
+                    }
+                    secondary
+                  />
                 </Grid>
               </Grid>
             </Container>
           </Box>
         </Box>
       </BackgroundImage>
+      <Footer />
     </>
   )
 }

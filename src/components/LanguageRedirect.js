@@ -40,8 +40,6 @@ const LanguageRedirect = ({
       !disablePrompt
     ) {
       const browserLang = detectBrowserLanguage().substr(0, 2)
-      console.log(browserLang)
-      console.log(language)
       if (
         supportedLanguages.includes(browserLang) &&
         language !== browserLang &&
@@ -69,11 +67,18 @@ const LanguageRedirect = ({
       case "yes":
         const browserLang = detectBrowserLanguage().substr(0, 2)
         dispatch(setLanguage(browserLang))
-        const redirectUrl = `${
-          internal.filter((i) => {
-            return i.id === locationId.id
-          })[0].url[browserLang]
-        }${locationId !== `home` ? "/" : ""}`
+        let redirectUrl
+        if (locationId.staticPage) {
+          redirectUrl = internal
+            .filter((i) => i.id === "how-to")[0]
+            .options.filter((j) => j.id === locationId.id)[0].url[browserLang]
+        } else {
+          redirectUrl = `${
+            internal.filter((i) => {
+              return i.id === locationId.id
+            })[0].url[browserLang]
+          }${locationId !== `home` ? "/" : ""}`
+        }
         navigate(
           `/${browserLang}${redirectUrl}${locationId.dog ? locationId.dog : ""}`
         )

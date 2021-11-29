@@ -18,6 +18,7 @@ import { setShowMobileNav } from "../redux/actions"
 import Dropdown from "./Dropdown"
 import { Link } from "./Link"
 import LanguageSelector from "./LanguageSelector"
+import SocialLinks from "./SocialLinks"
 
 const MobileNav = ({ dispatch, isOpen, language }) => {
   const navigation = useNav()
@@ -88,6 +89,9 @@ const MobileNav = ({ dispatch, isOpen, language }) => {
               }
             )}
           </List>
+          <Box mb={1}>
+            <SocialLinks />
+          </Box>
           <LanguageSelector />
         </Box>
       </Dialog>

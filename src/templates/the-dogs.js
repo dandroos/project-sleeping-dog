@@ -17,6 +17,7 @@ import getDogAge from "../util/getDogAge"
 import { connect } from "react-redux"
 import { setLanguage, setLocationId } from "../redux/actions"
 import useNav from "../hooks/useNav"
+import ReactMarkdown from "react-markdown"
 
 const TheDogs = ({ dispatch, pageContext, currLang }) => {
   const { language } = pageContext
@@ -29,9 +30,26 @@ const TheDogs = ({ dispatch, pageContext, currLang }) => {
     //eslint-disable-next-line
   }, [])
 
-  const dogData = useStaticQuery(graphql`
+  const { dictionary, dogsQuery, staticContent } = useStaticQuery(graphql`
     {
-      allFile(
+      dictionary: file(
+        sourceInstanceName: { eq: "language" }
+        name: { eq: "dictionary" }
+      ) {
+        childMarkdownRemark {
+          frontmatter {
+            male {
+              en
+              es
+            }
+            female {
+              en
+              es
+            }
+          }
+        }
+      }
+      dogsQuery: allFile(
         filter: { sourceInstanceName: { eq: "dogs" }, extension: { eq: "md" } }
       ) {
         nodes {
@@ -70,9 +88,22 @@ const TheDogs = ({ dispatch, pageContext, currLang }) => {
           }
         }
       }
+      staticContent: file(
+        sourceInstanceName: { eq: "static_pages" }
+        name: { eq: "the_dogs" }
+      ) {
+        childMarkdownRemark {
+          frontmatter {
+            dogs_intro_text {
+              en
+              es
+            }
+          }
+        }
+      }
     }
-  `).allFile.nodes
-
+  `)
+  const dogData = dogsQuery.nodes
   const { internal } = useNav()
   const dogs = dogData.map(({ childMarkdownRemark }) => ({
     name: childMarkdownRemark.frontmatter.dog_name,
@@ -108,7 +139,9 @@ const TheDogs = ({ dispatch, pageContext, currLang }) => {
         <CardContent sx={{ textAlign: "center" }}>
           <Typography variant="h3">{name}</Typography>
           <Typography>
-            {sex === "0" ? "Male" : "Female"}
+            {sex === "0"
+              ? dictionary.childMarkdownRemark.frontmatter.male[language]
+              : dictionary.childMarkdownRemark.frontmatter.female[language]}
             {` | `}
             {age}
           </Typography>
@@ -119,10 +152,28 @@ const TheDogs = ({ dispatch, pageContext, currLang }) => {
 
   return (
     <PageWrapper title={title}>
-      <Typography paragraph>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat quo
-        facere quidem blanditiis eius minus officia autem hic, fugit animi?
-      </Typography>
+      <ReactMarkdown
+        includeElementIndex
+        children={
+          staticContent.childMarkdownRemark.frontmatter.dogs_intro_text[
+            language
+          ]
+        }
+        components={{
+          p: ({ node, ...props }, ind) => {
+            console.log(props)
+            return (
+              <Typography
+                variant={props.index === 0 ? "lead" : undefined}
+                paragraph
+              >
+                {props.children}
+              </Typography>
+            )
+          },
+          a: ({ ...props }) => <Link href={props.href}>{props.children}</Link>,
+        }}
+      />
       <Grid container spacing={2}>
         {dogs.map((dog) => (
           <Grid item xs={12} md={6}>
@@ -130,14 +181,6 @@ const TheDogs = ({ dispatch, pageContext, currLang }) => {
           </Grid>
         ))}
       </Grid>
-      {/* <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <DogCard dogData={tempDog} />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <DogCard dogData={tempDog} />
-        </Grid>
-      </Grid> */}
     </PageWrapper>
   )
 }

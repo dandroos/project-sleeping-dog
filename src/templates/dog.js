@@ -1,6 +1,6 @@
 import { ImageAlbum } from "@mitch528/mdi-material-ui"
 import { Button, CardActionArea, Grid, Typography } from "@mui/material"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
 import { connect } from "react-redux"
@@ -26,7 +26,7 @@ const Dog = ({ pageContext, dispatch, data, language, isMobile }) => {
   }, [])
 
   const { main, thumbnails, og, profile } = data
-  const text = data.text.childMarkdownRemark.frontmatter
+  const dictionary = data.dictionary.childMarkdownRemark.frontmatter
   const dog = getDogData({
     dog: main,
     language: pageContext.language,
@@ -69,27 +69,34 @@ const Dog = ({ pageContext, dispatch, data, language, isMobile }) => {
                 sx={{ mt: 1 }}
                 onClick={handleOpenGallery}
               >
-                {text.dict_view_photos[`dict_view_photos_${language}`] +
-                  ` (${images.length})`}
+                {dictionary.view_photos[language] + ` (${images.length})`}
               </Button>
             </>
           </Grid>
           <Grid item xs={12} order={3}>
             <Typography variant="h6" align="center">
-              {text.dict_share[`dict_share_${language}`]}
+              {dictionary.share[language]}
             </Typography>
             <Sharer align="center" />
           </Grid>
 
           <Grid item xs={12} order={4}>
             <Typography variant="h5">
-              {text.dict_description[`dict_description_${language}`]}
+              {dictionary.description[language]}
             </Typography>
             <ReactMarkdown
+              includeElementIndex
               components={{
-                p: ({ node }) => {
+                p: ({ node, ...props }) => {
                   const { value } = node.children[0]
-                  return <Typography paragraph>{value}</Typography>
+                  return (
+                    <Typography
+                      variant={props.index === 0 ? "lead" : undefined}
+                      paragraph
+                    >
+                      {value}
+                    </Typography>
+                  )
                 },
               }}
             >
@@ -110,23 +117,23 @@ export default connect(mapStateToProps)(Dog)
 
 export const pageQuery = graphql`
   query ($id: String!, $profile: String!) {
-    text: file(
+    dictionary: file(
       sourceInstanceName: { eq: "language" }
       name: { eq: "dictionary" }
     ) {
       childMarkdownRemark {
         frontmatter {
-          dict_share {
-            dict_share_en
-            dict_share_es
+          share {
+            en
+            es
           }
-          dict_view_photos {
-            dict_view_photos_es
-            dict_view_photos_en
+          view_photos {
+            es
+            en
           }
-          dict_description {
-            dict_description_en
-            dict_description_es
+          description {
+            en
+            es
           }
         }
       }

@@ -15,189 +15,221 @@ collections:
         file: content/language/dictionary.md
         fields:
           - label: Home
-            name: dict_home
+            name: home
             widget: object
             fields:
               - label: English
-                name: dict_home_en
+                name: en
               - label: Español
-                name: dict_home_es
+                name: es
           - label: Read more
-            name: dict_read_more
+            name: read_more
             widget: object
             fields:
               - label: English
-                name: dict_read_more_en
+                name: en
               - label: Español
-                name: dict_read_more_es
+                name: es
           - label: Profile
-            name: dict_profile
+            name: profile
             widget: object
             fields:
               - label: English
-                name: dict_profile_en
+                name: en
               - label: Español
-                name: dict_profile_es
+                name: es
           - label: Age
-            name: dict_age
+            name: age
             widget: object
             fields:
               - label: English
-                name: dict_age_en
+                name: en
               - label: Español
-                name: dict_age_es
+                name: es
           - label: Sex
-            name: dict_sex
+            name: sex
             widget: object
             fields:
               - label: English
-                name: dict_sex_en
+                name: en
               - label: Español
-                name: dict_sex_es
+                name: es
           - label: Male
-            name: dict_male
+            name: male
             widget: object
             fields:
               - label: English
-                name: dict_male_en
+                name: en
               - label: Español
-                name: dict_male_es
+                name: es
           - label: Female
-            name: dict_female
+            name: female
             widget: object
             fields:
               - label: English
-                name: dict_female_en
+                name: en
               - label: Español
-                name: dict_female_es
+                name: es
           - label: Breed
-            name: dict_breed
+            name: breed
             widget: object
             fields:
               - label: English
-                name: dict_breed_en
+                name: en
               - label: Español
-                name: dict_breed_es
+                name: es
           - label: PPP?
-            name: dict_ppp
+            name: ppp
             widget: object
             fields:
               - label: English
-                name: dict_ppp_en
+                name: en
               - label: Español
-                name: dict_ppp_es
+                name: es
           - label: Came into the shelter
-            name: dict_came_in
+            name: came_in
             widget: object
             fields:
               - label: English
-                name: dict_came_in_en
+                name: en
               - label: Español
-                name: dict_came_in_es
+                name: es
           - label: Sociability
-            name: dict_sociability
+            name: sociability
             widget: object
             fields:
               - label: English
-                name: dict_sociability_en
+                name: en
               - label: Español
-                name: dict_sociability_es
+                name: es
           - label: Children
-            name: dict_children
+            name: children
             widget: object
             fields:
               - label: English
-                name: dict_children_en
+                name: en
               - label: Español
-                name: dict_children_es
+                name: es
           - label: Dogs
-            name: dict_dogs
+            name: dogs
             widget: object
             fields:
               - label: English
-                name: dict_dogs_en
+                name: en
               - label: Español
-                name: dict_dogs_es
+                name: es
           - label: Cats
-            name: dict_cats
+            name: cats
             widget: object
             fields:
               - label: English
-                name: dict_cats_en
+                name: en
               - label: Español
-                name: dict_cats_es
+                name: es
           - label: View photos
-            name: dict_view_photos
+            name: view_photos
             widget: object
             fields:
               - label: English
-                name: dict_view_photos_en
+                name: en
               - label: Español
-                name: dict_view_photos_es
+                name: es
           - label: Share
-            name: dict_share
+            name: share
             widget: object
             fields:
               - label: English
-                name: dict_share_en
+                name: en
               - label: Español
-                name: dict_share_es
+                name: es
           - label: Description
-            name: dict_description
+            name: description
             widget: object
             fields:
               - label: English
-                name: dict_description_en
+                name: en
               - label: Español
-                name: dict_description_es
+                name: es
           - label: Common queries
-            name: dict_common_queries
+            name: common_queries
             widget: object
             fields:
               - label: English
-                name: dict_common_queries_en
+                name: en
               - label: Español
-                name: dict_common_queries_es
+                name: es
           - label: Name
-            name: dict_name
+            name: name
             widget: object
             fields:
               - label: English
-                name: dict_name_en
+                name: en
               - label: Español
-                name: dict_name_es
+                name: es
           - label: Email
-            name: dict_email
+            name: email
             widget: object
             fields:
               - label: English
-                name: dict_email_en
+                name: en
               - label: Español
-                name: dict_email_es
+                name: es
           - label: Phone
-            name: dict_phone
+            name: phone
             widget: object
             fields:
               - label: English
-                name: dict_phone_en
+                name: en
               - label: Español
-                name: dict_phone_es
+                name: es
           - label: Message
-            name: dict_message
+            name: message
             widget: object
             fields:
               - label: English
-                name: dict_message_en
+                name: en
               - label: Español
-                name: dict_message_es
+                name: es
           - label: Send
-            name: dict_send
+            name: send
             widget: object
             fields:
               - label: English
-                name: dict_send_en
+                name: en
               - label: Español
-                name: dict_send_es
+                name: es
+          - label: Opening hours
+            name: opening_hours
+            widget: object
+            fields:
+              - label: English
+                name: en
+              - label: Español
+                name: es
+          - label: All rights reserved
+            name: all_rights_reserved
+            widget: object
+            fields:
+              - label: English
+                name: en
+              - label: Español
+                name: es
+          - label: Site by
+            name: site_by
+            widget: object
+            fields:
+              - label: English
+                name: en
+              - label: Español
+                name: es
+          - label: For more info...
+            name: for_more_info
+            widget: object
+            fields:
+              - label: English
+                name: en
+              - label: Español
+                name: es
       - label: "Change language prompt"
         name: "language_prompt"
         file: "content/language/prompt.md"
@@ -385,6 +417,72 @@ collections:
               buttons: ["bold", "italic", "link"],
               editorComponents: [],
             }
+  - label: Contact details
+    name: contact_details
+    editor:
+      preview: false
+    files:
+      - label: Email and social
+        name: email_and_social
+        file: content/contact/email_and_social.md
+        fields:
+          - label: Email address
+            name: email_address
+          - label: Facebook ID
+            name: facebook_id
+          - label: Instagram ID
+            name: instagram_id
+      - label: Location
+        name: location
+        file: content/contact/location.md
+        fields:
+          - label: Address
+            name: address
+            widget: list
+            fields:
+              - label: Address line
+                name: address_line
+          - label: GPS coordinates
+            name: gps_coordinates
+            widget: object
+            fields:
+              - label: Latitude
+                name: latitude
+              - label: Longitude
+                name: longitude
+      - label: Opening hours
+        name: opening_hours
+        file: content/contact/opening_hours.md
+        fields:
+          - label: Days
+            name: days
+            widget: list
+            fields:
+              - label: Entry
+                name: entry
+                widget: object
+                fields:
+                  - label: Day
+                    name: day
+                    widget: select
+                    options:
+                      - { label: Monday, value: monday }
+                      - { label: Tuesday, value: tuesday }
+                      - { label: Wednesday, value: wednesday }
+                      - { label: Thursday, value: thursday }
+                      - { label: Friday, value: friday }
+                      - { label: Saturday, value: saturday }
+                      - { label: Sunday, value: sunday }
+                      - { label: Public holidays, value: holidays }
+                  - label: Time
+                    name: time
+                    pattern:
+                      [
+                        "^\\d\\d:\\d\\d - \\d\\d:\\d\\d$",
+                        "Must be in '??:?? - ??:??' format. e.g. 09:30 - 10:00",
+                      ]
+                    widget: string
+                    required: false
   - label: "Pages"
     name: "pages"
     media_folder: "./site_images"
@@ -409,17 +507,17 @@ collections:
             widget: "object"
             fields:
               - label: "Español"
-                name: "homepage_heading_es"
+                name: "es"
               - label: "English"
-                name: "homepage_heading_en"
+                name: "en"
           - label: "Subheading"
             name: "homepage_subheading"
             widget: "object"
             fields:
               - label: "Español"
-                name: "homepage_subheading_es"
+                name: "es"
               - label: "English"
-                name: "homepage_subheading_en"
+                name: "en"
           - label: "Call to Action #1"
             name: "homepage_cta_1"
             hint: "The first button on the homepage"
@@ -430,11 +528,7 @@ collections:
                 widget: "select"
                 options:
                   - { label: "The about page", value: "about" }
-                  - { label: "The adopt page", value: "adopt" }
-                  - { label: "The foster page", value: "foster" }
                   - { label: "The news page", value: "news" }
-                  - { label: "The donate page", value: "donate" }
-                  - { label: "The volunteer page", value: "volunteer" }
                   - { label: "The dogs page", value: "the-dogs" }
                   - { label: "The contact page", value: "contact" }
               - label: "Button text"
@@ -442,9 +536,9 @@ collections:
                 widget: "object"
                 fields:
                   - label: "English"
-                    name: "homepage_cta_1_button_text_en"
+                    name: "en"
                   - label: "Español"
-                    name: "homepage_cta_1_button_text_es"
+                    name: "es"
           - label: "Call to Action #2"
             name: "homepage_cta_2"
             hint: "The second button on the homepage"
@@ -455,11 +549,7 @@ collections:
                 widget: "select"
                 options:
                   - { label: "The about page", value: "about" }
-                  - { label: "The adopt page", value: "adopt" }
-                  - { label: "The foster page", value: "foster" }
-                  - { label: "The donate page", value: "donate" }
                   - { label: "The news page", value: "news" }
-                  - { label: "The volunteer page", value: "volunteer" }
                   - { label: "The dogs page", value: "the-dogs" }
                   - { label: "The contact page", value: "contact" }
               - label: "Button text"
@@ -467,9 +557,144 @@ collections:
                 widget: "object"
                 fields:
                   - label: "English"
-                    name: "homepage_cta_2_button_text_en"
+                    name: "en"
                   - label: "Español"
-                    name: "homepage_cta_2_button_text_es"
+                    name: "es"
+      - label: The Dogs
+        name: the_dogs
+        file: content/static_pages/the_dogs.md
+        fields:
+          - label: Dogs intro text
+            name: dogs_intro_text
+            widget: object
+            fields:
+              - label: English
+                name: en
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+              - label: "Español"
+                name: es
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+      - label: About us
+        name: about_us
+        file: "content/static_pages/about_us.md"
+        fields:
+          - label: Main image
+            name: main_image
+            widget: image
+          - label: Content
+            name: content
+            widget: object
+            fields:
+              - label: English
+                name: content_en
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+              - label: "Español"
+                name: content_es
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+      - label: Adopt
+        name: adopt
+        file: "content/static_pages/adopt.md"
+        fields:
+          - label: Main image
+            name: main_image
+            widget: image
+          - label: Content
+            name: content
+            widget: object
+            fields:
+              - label: English
+                name: content_en
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+              - label: "Español"
+                name: content_es
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+      - label: Foster
+        name: foster
+        file: "content/static_pages/foster.md"
+        fields:
+          - label: Main image
+            name: main_image
+            widget: image
+          - label: Content
+            name: content
+            widget: object
+            fields:
+              - label: English
+                name: content_en
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+              - label: "Español"
+                name: content_es
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+      - label: Donate
+        name: donate
+        file: "content/static_pages/donate.md"
+        fields:
+          - label: Main image
+            name: main_image
+            widget: image
+          - label: Content
+            name: content
+            widget: object
+            fields:
+              - label: English
+                name: content_en
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+              - label: "Español"
+                name: content_es
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+      - label: Volunteer
+        name: volunteer
+        file: "content/static_pages/volunteer.md"
+        fields:
+          - label: Main image
+            name: main_image
+            widget: image
+          - label: Content
+            name: content
+            widget: object
+            fields:
+              - label: English
+                name: content_en
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
+              - label: "Español"
+                name: content_es
+                widget: markdown
+                buttons: ["bold", "italic", "link"]
+                editorComponents: []
+                modes: [rich_text]
       - label: Contact us
         name: contact_us
         file: "content/static_pages/contact_us.md"

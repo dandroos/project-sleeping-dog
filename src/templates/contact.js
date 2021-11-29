@@ -20,6 +20,8 @@ import ContactForm from "../components/ContactForm"
 import PageWrapper from "../components/PageWrapper"
 import { setLocationId, setLanguage } from "../redux/actions"
 import useNav from "../hooks/useNav"
+import LocationMap from "../components/LocationMap"
+import OpeningHours from "../components/OpeningHours"
 
 const Contact = ({ dispatch, currLang, pageContext }) => {
   const { dictionary, content } = useStaticQuery(graphql`
@@ -30,29 +32,29 @@ const Contact = ({ dispatch, currLang, pageContext }) => {
       ) {
         childMarkdownRemark {
           frontmatter {
-            dict_common_queries {
-              dict_common_queries_en
-              dict_common_queries_es
+            common_queries {
+              en
+              es
             }
-            dict_email {
-              dict_email_en
-              dict_email_es
+            email {
+              en
+              es
             }
-            dict_name {
-              dict_name_en
-              dict_name_es
+            name {
+              en
+              es
             }
-            dict_message {
-              dict_message_en
-              dict_message_es
+            message {
+              en
+              es
             }
-            dict_send {
-              dict_send_en
-              dict_send_es
+            send {
+              en
+              es
             }
-            dict_phone {
-              dict_phone_en
-              dict_phone_es
+            phone {
+              en
+              es
             }
           }
         }
@@ -150,6 +152,16 @@ const Contact = ({ dispatch, currLang, pageContext }) => {
     >
       <Grid container spacing={2}>
         <Grid item xs={12}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={7}>
+              <LocationMap />
+            </Grid>
+            <Grid item xs={12} md={5} sx={{ textAlign: "center" }}>
+              <OpeningHours />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
           <Alert severity="warning" variant="outlined">
             {
               data.contact_us_common_queries_alert[
@@ -160,11 +172,7 @@ const Contact = ({ dispatch, currLang, pageContext }) => {
         </Grid>
         <Grid item xs={12}>
           <Typography variant="h3">
-            {
-              data.dict_common_queries[
-                `dict_common_queries_${pageContext.language}`
-              ]
-            }
+            {data.common_queries[pageContext.language]}
           </Typography>
           {data.contact_us_common_queries[
             `contact_us_common_queries_${pageContext.language}`
@@ -188,7 +196,7 @@ const Contact = ({ dispatch, currLang, pageContext }) => {
           Icon={FacebookMessenger}
         />
         <ContactButton
-          primary={data.dict_email[`dict_email_${pageContext.language}`]}
+          primary={data.email[pageContext.language]}
           secondary="info@fuerteventuradogrescue.org"
           click={() => console.log("Email clicked")}
           Icon={Email}

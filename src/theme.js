@@ -68,6 +68,11 @@ const theme = createTheme({
         maxWidth: "md",
       },
     },
+    MuiLink: {
+      defaultProps: {
+        underline: "none",
+      },
+    },
   },
 })
 
